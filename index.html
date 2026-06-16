@@ -62,7 +62,7 @@
   color: #BC5A65;
   font-weight: bold;
 }
-	/* 記事一覧全体のコンテナ */
+/* 記事一覧全体のコンテナ */
 .article-list {
     display: grid;
     grid-template-columns: 1fr; /* スマホでは縦1列 */
@@ -70,10 +70,15 @@
     margin-top: 20px;
 }
 
-/* タブレット・PCなど画面が広い時は2列にする */
+/* タブレット・PCなど画面が広い時は2列、3列に可変 */
 @media (min-width: 768px) {
     .article-list {
         grid-template-columns: repeat(2, 1fr); /* 横に2列並べる */
+    }
+}
+@media (min-width: 1024px) {
+    .article-list {
+        grid-template-columns: repeat(3, 1fr); /* 画面が十分広い時は3列並べる */
     }
 }
 
@@ -202,33 +207,13 @@
 </head>
 <body class="min-h-screen pb-12">
 
-    <!-- Chosen Palette: Pearl & Silk (Warm Neutrals, Champagne Gold, Soft Mist Blue) -->
-    
-    <!-- Application Structure Plan: 
-        1. ヒーローセクション: マニュアルの目的を提示。
-        2. 製品マトリックス: 全7アイテムをインタラクティブなカードで表示。クリックで詳細（成分・効果）を切り替え。
-        3. 成分バランス分析: Chart.jsを使用して、このラインナップが「保湿」「キメ」「ハリ」「洗浄」のどの要素に強いかを可視化。
-        4. 3大攻めルール: 視覚的なステップバイステップ形式で、乳化などの重要テクニックを解説。
-        5. 動的ルーティンセレクター: 「朝」と「夜」をトグルで切り替え、その時に使うべき製品と順番を動的に表示。
-        この構造により、ユーザーは単なるリストを読むのではなく、自分の状況（今が朝か夜か）に合わせて必要な情報を即座に引き出せます。
-    -->
-
-    <!-- Visualization & Content Choices: 
-        - レーダーチャート (Chart.js): 7製品全体のカバー範囲（保湿・毛穴・ハリ・透明感）を可視化。
-        - 製品カード: グリッドレイアウトで各製品を整理し、JSで詳細表示を制御。
-        - ルーティンタイムライン: 垂直方向のステップ表示で、使う順番を直感的に。
-        - インタラクティブ・トグル: 朝/夜の切り替えでユーザーの混乱を防ぐ。
-        - NO SVG/Mermaid: アイコンはUnicodeとCSS装飾のみで構築。
-    -->
-
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <nav class="sticky top-0 z-50 glass-card mx-4 mt-4 px-6 py-4 flex justify-between items-center shadow-sm">
         <h1 class="text-lg font-bold text-gray-800">Poreless Guide</h1>
         <div class="hidden md:flex space-x-6 text-sm font-medium">
             <a href="#products" class="nav-link">アイテム</a>
             <a href="#rules" class="nav-link">ルール</a>
             <a href="#routine" class="nav-link">ルーティン</a>
+            <a href="#blog-list" class="nav-link">新着記事</a>
         </div>
         <button id="routine-toggle" class="bg-amber-100 text-amber-800 px-4 py-1 rounded-full text-xs font-bold hover:bg-amber-200 transition">
             夜モードへ
@@ -329,7 +314,7 @@
         </section>
 
         <!-- Section: Routine Selection -->
-        <section id="routine" class="scroll-mt-24 pb-20">
+        <section id="routine" class="scroll-mt-24">
             <div class="text-center mb-12">
                 <h3 class="text-2xl font-bold">シチュエーション別ルーティン</h3>
                 <p class="text-sm text-gray-500 mt-2">現在の時間帯に合わせてステップを確認してください</p>
@@ -347,10 +332,56 @@
             </div>
         </section>
 
+        <!-- Section: Blog Article List -->
+        <section id="blog-list" class="scroll-mt-24 border-t border-gray-200 pt-16">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">新着記事一覧</h2>
+                <p class="text-sm text-gray-500 mt-1">あわせて読みたいビューティー＆ボディメイク情報</p>
+            </div>
+            
+            <div class="article-list">
+                <!-- 記事カード1: 美容ランキング -->
+                <article class="article-card">
+                    <a href="beauty_ranking.html">
+                        <div class="article-content">
+                            <span class="category">美容・ライフスタイル</span>
+                            <h3 class="article-title">20代のうちにやって良かった美容法ランキング20選【鹿の間さん動画まとめ】</h3>
+                            <p class="article-excerpt">視聴者1000人のリアルな声から選ばれた、将来の自分への投資となる美容法をランキング形式で詳しくご紹介します。</p>
+                            <span class="date">2026.06.16</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 記事カード2: 筋トレ・食事管理（今回新規追加） -->
+                <article class="article-card">
+                    <a href="training_diet_guide.html">
+                        <div class="article-content">
+                            <span class="category">ボディメイク・フィットネス</span>
+                            <h3 class="article-title">理想の体型を目指す食事管理と効率的トレーニング解説【みやこさん流】</h3>
+                            <p class="article-excerpt">筋トレ初心者必見！しっかり食べて効率よく動かすボディメイクの本質や、コストコ食材を使った簡単栄養バランス管理法を徹底解説。</p>
+                            <span class="date">2026.06.16</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 記事カード3: プロフィール -->
+                <article class="article-card">
+                    <a href="profile.html">
+                        <div class="article-content">
+                            <span class="category">自己紹介</span>
+                            <h3 class="article-title">運営者のプロフィール</h3>
+                            <p class="article-excerpt">このブログを運営している私の自己紹介と、普段大切にしていることについてまとめました。</p>
+                            <span class="date">2026.06.01</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
     </main>
 
     <footer class="text-center text-xs text-gray-400 mt-20">
-        <p>&copy; 2024 Poreless Skincare Logic. For Perfect Porcelain Skin.</p>
+        <p>&copy; 2026 Poreless Skincare Logic. For Perfect Porcelain Skin.</p>
     </footer>
 
     <script>
@@ -523,8 +554,8 @@
                     scales: {
                         r: {
                             angleLines: { display: false },
-                            suggestedMin: 0,
-                            suggestedMax: 100,
+                            suggestMin: 0,
+                            suggestMax: 100,
                             ticks: { display: false },
                             pointLabels: {
                                 font: { size: 10, family: 'Noto Sans JP' },
@@ -551,32 +582,5 @@
             });
         });
     </script>
-	<main class="container">
-    <h2>新着記事一覧</h2>
-    
-    <div class="article-list">
-        <article class="article-card">
-            <a href="beauty_ranking.html">
-                <div class="article-content">
-                    <span class="category">美容・ライフスタイル</span>
-                    <h3 class="article-title">20代のうちにやって良かった美容法ランキング20選【鹿の間さん動画まとめ】</h3>
-                    <p class="article-excerpt">視聴者1000人のリアルな声から選ばれた、将来の自分への投資となる美容法をランキング形式で詳しくご紹介します。</p>
-                    <span class="date">2026.06.16</span>
-                </div>
-            </a>
-        </article>
-
-        <article class="article-card">
-            <a href="profile.html">
-                <div class="article-content">
-                    <span class="category">自己紹介</span>
-                    <h3 class="article-title">運営者のプロフィール</h3>
-                    <p class="article-excerpt">このブログを運営している私の自己紹介と、普段大切にしていることについてまとめました。</p>
-                    <span class="date">2026.06.01</span>
-                </div>
-            </a>
-        </article>
-    </div>
-</main>
 </body>
 </html>
