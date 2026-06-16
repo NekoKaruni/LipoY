@@ -62,6 +62,83 @@
   color: #BC5A65;
   font-weight: bold;
 }
+	/* 記事一覧全体のコンテナ */
+.article-list {
+    display: grid;
+    grid-template-columns: 1fr; /* スマホでは縦1列 */
+    gap: 20px; /* カード同士の間隔 */
+    margin-top: 20px;
+}
+
+/* タブレット・PCなど画面が広い時は2列にする */
+@media (min-width: 768px) {
+    .article-list {
+        grid-template-columns: repeat(2, 1fr); /* 横に2列並べる */
+    }
+}
+
+/* 記事カード全体のスタイル */
+.article-card {
+    background-color: #ffffff;
+    border: 1px solid #e6dfd7;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* カード全体をリンクにするための設定 */
+.article-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* マウスを乗せた（ホバーした）時のアニメーション */
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(140, 118, 98, 0.15);
+}
+
+/* カード内のテキスト余白 */
+.article-content {
+    padding: 20px;
+}
+
+/* カテゴリタグ */
+.category {
+    display: inline-block;
+    background-color: #eedecf;
+    color: #5c4b3c;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* 記事のタイトル */
+.article-title {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    color: #2b221a;
+    line-height: 1.4;
+}
+
+/* 記事の説明文（抜粋） */
+.article-excerpt {
+    font-size: 13px;
+    color: #6e6053;
+    margin: 0 0 15px 0;
+    line-height: 1.6;
+}
+
+/* 日付 */
+.date {
+    font-size: 12px;
+    color: #9c8e82;
+    display: block;
+    text-align: right;
+}
 </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -474,5 +551,32 @@
             });
         });
     </script>
+	<main class="container">
+    <h2>新着記事一覧</h2>
+    
+    <div class="article-list">
+        <article class="article-card">
+            <a href="beauty_ranking.html">
+                <div class="article-content">
+                    <span class="category">美容・ライフスタイル</span>
+                    <h3 class="article-title">20代のうちにやって良かった美容法ランキング20選【鹿の間さん動画まとめ】</h3>
+                    <p class="article-excerpt">視聴者1000人のリアルな声から選ばれた、将来の自分への投資となる美容法をランキング形式で詳しくご紹介します。</p>
+                    <span class="date">2026.06.16</span>
+                </div>
+            </a>
+        </article>
+
+        <article class="article-card">
+            <a href="profile.html">
+                <div class="article-content">
+                    <span class="category">自己紹介</span>
+                    <h3 class="article-title">運営者のプロフィール</h3>
+                    <p class="article-excerpt">このブログを運営している私の自己紹介と、普段大切にしていることについてまとめました。</p>
+                    <span class="date">2026.06.01</span>
+                </div>
+            </a>
+        </article>
+    </div>
+</main>
 </body>
 </html>
